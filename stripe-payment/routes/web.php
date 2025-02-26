@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/', [ProductController::class, 'index']);
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+Route::post('/product/{product}/payment-intent', [ProductController::class, 'createPaymentIntent'])->name('product.charge');
+
